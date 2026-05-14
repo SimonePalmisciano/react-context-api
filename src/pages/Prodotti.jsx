@@ -12,18 +12,14 @@ function Prodotti() {
 
     const productsFiltered = products.filter(product => {
         if (budgetMode === undefined || budgetMode === 0 || budgetMode === null) {
-            console.log('sono stato filtrato');
-            console.log(budgetMode);
             return products
         }
-        console.log('non sono stato filtrato');
         return product.price <= budgetMode;
     });
 
     useEffect(() => {
         fetchProducts()
             .then(data => {
-                console.log(data);
                 const dataWithPrevNextId = data.map((product, index, array) => { // questo è per dopo
                     return {
                         ...product,
