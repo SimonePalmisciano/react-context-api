@@ -6,19 +6,22 @@ function BudgetProvider({ children }) {
     const [budgetMode, setBudgetMode] = useState(false);
 
     const changeBudgetMode = () => {
+        console.log("ciao")
         !budgetMode ? setBudgetMode(true) : setBudgetMode(false);
-    }
+    };
 
-    const value = {
+    const valueToSend = {
         budgetMode,
-        setBudgetMode,
         changeBudgetMode
-    }
+    };
 
     return (
-        <BudgetProvider value={value}>
+        <BudgetContext value={valueToSend}>
             {children}
-        </BudgetProvider>
-    )
+        </BudgetContext>
+    );
 }
-export { BudgetProvider, BudgetContext }
+export {
+    BudgetContext,
+    BudgetProvider,
+}
