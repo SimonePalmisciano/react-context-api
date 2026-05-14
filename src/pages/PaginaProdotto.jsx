@@ -22,11 +22,6 @@ function PaginaProdotto() {
             .then(data => {
                 setProduct(data)
             })
-
-        if (actualProduct === data.id) {
-            console.log('il numero è presente');
-            
-        }
     }, [actualProduct]);
 
     return (

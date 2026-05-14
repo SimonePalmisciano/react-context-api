@@ -11,6 +11,16 @@ ul {
     list-style-type: none;
 }
 
+header {
+    .container {
+        height: 100%;
+    }
+
+    .div-filter {
+        height: 70px;
+    }
+}
+
 .card-header {
     height: 100px;
 }
@@ -24,4 +34,8 @@ ul {
 .card-description {
     height: 150px;
     overflow: auto;
+}
+
+.form-control {
+    width: 20%;
 }

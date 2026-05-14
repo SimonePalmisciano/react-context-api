@@ -10,17 +10,28 @@ function Prodotti() {
     const [products, setProducts] = useState([]);
     const { budgetMode } = useContext(BudgetContext);
 
-    let productsFiltered = products;
-
-    if (budgetMode) {
-        productsFiltered = products.filter(product => {
-            return product.price <= 30;
-        });
-    }
+    const productsFiltered = products.filter(product => {
+        if (budgetMode === undefined || budgetMode === 0 || budgetMode === null) {
+            console.log('sono stato filtrato');
+            console.log(budgetMode);
+            return products
+        }
+        console.log('non sono stato filtrato');
+        return product.price <= budgetMode;
+    });
 
     useEffect(() => {
         fetchProducts()
             .then(data => {
+                console.log(data);
+                const dataWithPrevNextId = data.map((product, index, array) => { // questo è per dopo
+                    return {
+                        ...product,
+                        prevId: 0,
+                        nextId: 0,
+                    }
+                })
+
                 setProducts(data)
             })
     }, []);
