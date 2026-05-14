@@ -5,21 +5,26 @@ import ChiSiamo from "./pages/ChiSiamo";
 import Prodotti from "./pages/Prodotti";
 import LayoutPagina from "./layouts/LayoutPagina";
 import PaginaProdotto from "./pages/PaginaProdotto";
+import { BudgetProvider } from "./contexts/BudgetContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <BudgetProvider>
+      <BrowserRouter>
+        <Routes>
 
-        <Route Component={LayoutPagina}>
-          <Route index element={<HomePage />} />
-          <Route path="chi-siamo" element={<ChiSiamo />} />
-          <Route path="prodotti" element={<Prodotti />} />
-          <Route path="prodotto/:productId" element={<PaginaProdotto />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+          <Route Component={LayoutPagina}>
+            <Route index element={<HomePage />} />
+            <Route path="chi-siamo" element={<ChiSiamo />} />
+            <Route path="prodotti" element={<Prodotti />} />
+            <Route path="prodotto/:productId" element={<PaginaProdotto />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
+          
+        </Routes>
+      </BrowserRouter>
+    </BudgetProvider>
   )
 }
 
