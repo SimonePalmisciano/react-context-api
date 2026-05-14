@@ -4,13 +4,8 @@ import { useContext } from "react"
 import { BudgetContext } from '../contexts/BudgetContext'
 
 function LayoutPagina() {
-
     const { changeBudgetMode, budgetMode } = useContext(BudgetContext);
-
-    const handleClick = () => {
-        changeBudgetMode()
-    }
-
+    
     return (
         <>
             <header>
@@ -19,7 +14,7 @@ function LayoutPagina() {
                         <span className="navbar-brand fw-bold">React Router</span>
                         {budgetMode === true ?
                             <>
-                                <Form.Check onClick={handleClick}
+                                <Form.Check onClick={changeBudgetMode}
                                     type="switch"
                                     id="custom-switch-ON"
                                 />
@@ -27,7 +22,7 @@ function LayoutPagina() {
                             </>
                             :
                             <>
-                                <Form.Check onClick={handleClick}
+                                <Form.Check onClick={changeBudgetMode}
                                     type="switch"
                                     id="custom-switch-OFF"
                                 />

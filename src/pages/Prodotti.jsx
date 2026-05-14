@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import Card from "./PaginaProdotto"
 import { Link } from "react-router"
 import { fetchProducts } from "../hooks/useFetch"
+import { BudgetContext } from '../contexts/BudgetContext'
 
 const API_URL = "https://fakestoreapi.com/products"
 
 function Prodotti() {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+    const { budgetMode } = useContext(BudgetContext);
+
+    let productsFiltered = products;
+
+    if (budgetMode) {
+        productsFiltered = products.filter(product => {
+            return product.price <= 30;
+        });
+    }
 
     useEffect(() => {
         fetchProducts()
@@ -18,7 +28,7 @@ function Prodotti() {
     return (
         <div className="container my-5">
             <div className="row row-gap-3">
-                {products.map(product => {
+                {productsFiltered.map(product => {
                     const {
                         id,
                         title,
