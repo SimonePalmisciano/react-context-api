@@ -1,23 +1,39 @@
 import { Outlet, Link, NavLink } from "react-router"
-import { Form } from "react-bootstrap"
+import { Form, FormCheck } from "react-bootstrap"
 import { useContext } from "react"
 import { BudgetContext } from '../contexts/BudgetContext'
 
 function LayoutPagina() {
 
-    const { changeBudgetMode } = useContext(BudgetContext);
-    
+    const { changeBudgetMode, budgetMode } = useContext(BudgetContext);
+
+    const handleClick = () => {
+        changeBudgetMode()
+    }
+
     return (
         <>
             <header>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-black">
                     <div className="container">
                         <span className="navbar-brand fw-bold">React Router</span>
-                        <Form.Check onClick={changeBudgetMode}
-                            type="switch"
-                            id="custom-switch"
-                            label="BudgetMode"
-                        />
+                        {budgetMode === true ?
+                            <>
+                                <Form.Check onClick={handleClick}
+                                    type="switch"
+                                    id="custom-switch-ON"
+                                />
+                                <label className="text-white" htmlFor="custom-switch-ON">BudgetMode ON</label>
+                            </>
+                            :
+                            <>
+                                <Form.Check onClick={handleClick}
+                                    type="switch"
+                                    id="custom-switch-OFF"
+                                />
+                                <label className="text-white" htmlFor="custom-switch-OFF">BudgetMode OFF</label>
+                            </>
+                        }
                         <ul className="navbar-nav ms-auto gap-2">
                             <li className="nav-item">
                                 <NavLink to="/" className="nav-link">
