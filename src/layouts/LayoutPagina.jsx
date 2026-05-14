@@ -1,17 +1,19 @@
 import { Outlet, Link, NavLink } from "react-router"
 import { Form } from "react-bootstrap"
 import { useContext } from "react"
-import { BudgetContext, BudgetProvider } from '../contexts/BudgetContext'
-
+import { BudgetContext } from '../contexts/BudgetContext'
 
 function LayoutPagina() {
+
+    const { changeBudgetMode } = useContext(BudgetContext);
+    
     return (
         <>
             <header>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-black">
                     <div className="container">
                         <span className="navbar-brand fw-bold">React Router</span>
-                        <Form.Check onClick={changeBudgetMode()}
+                        <Form.Check onClick={changeBudgetMode}
                             type="switch"
                             id="custom-switch"
                             label="BudgetMode"
